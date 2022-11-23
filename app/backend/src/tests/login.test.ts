@@ -1,12 +1,12 @@
-import * as sinon from 'sinon';
+//import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
 import App from '../app';
-import Example from '../database/models/ExampleModel';
+//import userModel from '../database/models/UserModel';
 
-import { Response } from 'superagent';
+//import { Response } from 'superagent';
 
 chai.use(chaiHttp);
 

@@ -20,7 +20,7 @@ services:
     ports:
       - 3001:3001
     working_dir: /app-backend
-    command: dev
+    command: npm run dev
     volumes: 
       - ./backend/src:/app-backend/src
     depends_on:

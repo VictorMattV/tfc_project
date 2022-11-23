@@ -12,7 +12,7 @@
     "test:debug": "DEBUG=true npm test",
     "compose:up": "cd app && docker-compose up -d --build",
     "compose:down": "cd app && docker-compose down --remove-orphans",
-    "compose:up:dev": "cd app && docker-compose -f docker-compose.dev.yml up -d",
+    "compose:up:dev": "cd app && docker-compose -f docker-compose.dev.yml up -d --build",
     "compose:down:dev": "cd app && docker-compose -f docker-compose.dev.yml down --remove-orphans",
     "logs": "cd app && docker-compose logs -f"
   },
