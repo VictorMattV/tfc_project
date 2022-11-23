@@ -1,6 +1,6 @@
 const user = {
-    email: 'admin@admin.com',
-    password: 'secret_admin'
+    email: 'anyuser@user.com',
+    password: 'secret_user'
 }
 
 export default user

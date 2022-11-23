@@ -16,7 +16,7 @@ const { expect } = chai;
 
 describe('Login tests', () => {
   describe('post/login', () => {
-    describe('insert a valid user', () => {
+    describe('inserting a valid user', () => {
       beforeEach(() => {
         sinon.stub(UserModel, 'findOne').resolves(user as UserModel)
       });
