@@ -5,3 +5,7 @@ export default interface IUser {
   password: string;
   role?: string;
 }
+
+export type jwtUser = {
+  userId: number,
+};

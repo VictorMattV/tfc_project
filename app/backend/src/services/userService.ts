@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import UserModel from '../database/models/UserModel';
-import IUser from '../interfaces/IUser';
+import IUser, { jwtUser } from '../interfaces/IUser';
 
-const SECRET = process.env.JWT_SECRET as string;
+export const SECRET = process.env.JWT_SECRET as string;
 
 export default class userService {
   private model = UserModel;
@@ -12,7 +12,7 @@ export default class userService {
     const user = await this.model.findOne({ where: { email } }) as IUser;
 
     if (!bcrypt.compareSync(password, user.password)) {
-      throw new Error('Incorrect password');
+      return { type: 'password error' };
     }
 
     const token = jwt.sign(
@@ -21,6 +21,12 @@ export default class userService {
       { algorithm: 'HS256', expiresIn: '5d' },
     );
 
-    return { message: { token } };
+    return { token: { token } };
+  };
+
+  getRole = async (userVerify: jwtUser) => {
+    const { userId } = userVerify;
+    const userFind = await this.model.findOne({ where: { id: userId } }) as IUser;
+    return userFind.role;
   };
 }
