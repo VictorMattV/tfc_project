@@ -1,8 +1,10 @@
 import * as express from 'express';
+import TeamController from './controllers/teamController';
 import UserController from './controllers/userController';
 import LoginValidation from './middlewares/userValidate';
 
 const userController = new UserController();
+const teamController = new TeamController();
 
 const loginValidation = new LoginValidation();
 
@@ -19,6 +21,7 @@ class App {
 
     this.app.post('/login', loginValidation.loginValid, userController.login);
     this.app.get('/login/validate', userController.getRole);
+    this.app.get('/teams', teamController.getAll);
   }
 
   private config():void {

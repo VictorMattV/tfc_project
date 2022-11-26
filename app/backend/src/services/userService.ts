@@ -5,7 +5,7 @@ import IUser, { jwtUser } from '../interfaces/IUser';
 
 export const SECRET = process.env.JWT_SECRET as string;
 
-export default class userService {
+export default class UserService {
   private model = UserModel;
 
   login = async (email: string, password: string) => {

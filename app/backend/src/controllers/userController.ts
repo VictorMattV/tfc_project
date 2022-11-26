@@ -20,6 +20,11 @@ export default class UserController {
 
   getRole = async (req: Request, res: Response) => {
     const { authorization } = req.headers;
+
+    if (!authorization) {
+      return res.status(401).json({ message: 'a valid token is required' });
+    }
+
     const auth = authorization?.replace('Bearer ', '') as string;
 
     const userVerify = jwt.verify(auth, SECRET);
