@@ -22,6 +22,7 @@ class App {
     this.app.post('/login', loginValidation.loginValid, userController.login);
     this.app.get('/login/validate', userController.getRole);
     this.app.get('/teams', teamController.getAll);
+    this.app.get('/teams/:id', teamController.getById);
   }
 
   private config():void {
