@@ -2,6 +2,7 @@ import * as express from 'express';
 import MatchController from './controllers/matchController';
 import TeamController from './controllers/teamController';
 import UserController from './controllers/userController';
+import MatchValidation from './middlewares/matchValidate';
 import LoginValidation from './middlewares/userValidate';
 
 const userController = new UserController();
@@ -9,6 +10,7 @@ const teamController = new TeamController();
 const matchController = new MatchController();
 
 const loginValidation = new LoginValidation();
+const matchValidation = new MatchValidation();
 
 class App {
   public app: express.Express;
@@ -26,7 +28,7 @@ class App {
     this.app.get('/teams', teamController.getAll);
     this.app.get('/teams/:id', teamController.getById);
     this.app.get('/matches', matchController.getAll);
-    this.app.post('/matches', matchController.createMatch);
+    this.app.post('/matches', matchValidation.matchValid, matchController.createMatch);
     this.app.patch('/matches/:id/finish', matchController.finishMatch);
   }
 
