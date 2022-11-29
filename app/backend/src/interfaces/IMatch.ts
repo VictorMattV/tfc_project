@@ -10,3 +10,11 @@ export default interface IMatch {
   teamHome: ITeam;
   teamAway: ITeam;
 }
+
+export type TMatches = {
+  homeTeam: number;
+  awayTeam: number;
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+  inProgress: boolean;
+};

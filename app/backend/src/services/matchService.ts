@@ -1,5 +1,6 @@
 import MatchModel from '../database/models/MatchModel';
 import TeamModel from '../database/models/TeamModel';
+import { TMatches } from '../interfaces/IMatch';
 
 export default class MatchService {
   private model = MatchModel;
@@ -19,6 +20,7 @@ export default class MatchService {
       ],
 
     });
+
     return matches;
   }
 
@@ -37,6 +39,13 @@ export default class MatchService {
       },
       ],
     });
+
     return matchesInProgress;
+  }
+
+  async createMatch(match: TMatches) {
+    const matchCreated = await this.model.create(match);
+
+    return matchCreated;
   }
 }
