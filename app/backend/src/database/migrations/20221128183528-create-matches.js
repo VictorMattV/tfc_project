@@ -12,6 +12,7 @@ module.exports = {
     home_team: {
       type: Sequelize.INTEGER,
       allowNull: false,
+      foreignkey: true,
       references: {
         model: "teams",
         key: 'id',
@@ -34,10 +35,10 @@ module.exports = {
       allowNull: false,
     },
     in_progress: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.BOOLEAN,
       allowNull: false,
-    }
-   })
+    },
+   });
   },
 
   down: async (queryInterface, Sequelize) => {

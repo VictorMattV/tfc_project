@@ -1,10 +1,12 @@
 import * as express from 'express';
+import MatchController from './controllers/matchController';
 import TeamController from './controllers/teamController';
 import UserController from './controllers/userController';
 import LoginValidation from './middlewares/userValidate';
 
 const userController = new UserController();
 const teamController = new TeamController();
+const matchController = new MatchController();
 
 const loginValidation = new LoginValidation();
 
@@ -23,6 +25,7 @@ class App {
     this.app.get('/login/validate', userController.getRole);
     this.app.get('/teams', teamController.getAll);
     this.app.get('/teams/:id', teamController.getById);
+    this.app.get('/matches', matchController.getAll);
   }
 
   private config():void {
