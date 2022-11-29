@@ -45,4 +45,12 @@ export default class Match {
 
     return res.status(201).json(matchCreated);
   };
+
+  finishMatch = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    await this.matchService.finishMatch(Number(id));
+
+    return res.status(200).json({ message: 'Finished' });
+  };
 }

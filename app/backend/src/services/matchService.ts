@@ -48,4 +48,11 @@ export default class MatchService {
 
     return matchCreated;
   }
+
+  async finishMatch(id: number) {
+    const matchById = await this.model.findOne({ where: { id } });
+    const finishedMatch = await matchById?.update({ inProgress: false });
+
+    return finishedMatch;
+  }
 }
