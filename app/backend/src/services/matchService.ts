@@ -55,4 +55,11 @@ export default class MatchService {
 
     return finishedMatch;
   }
+
+  async editMatch(id: number, homeTeamGoals: number, awayTeamGoals: number) {
+    const matchById = await this.model.findOne({ where: { id } });
+    const editedMatch = await matchById?.update({ homeTeamGoals, awayTeamGoals });
+
+    return editedMatch;
+  }
 }
