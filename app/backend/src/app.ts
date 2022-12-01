@@ -38,7 +38,8 @@ class App {
     );
     this.app.patch('/matches/:id/finish', matchController.finishMatch);
     this.app.patch('/matches/:id', matchController.editMatch);
-    this.app.get('/leaderboard/home', leaderboardController.getLeaderboard);
+    this.app.get('/leaderboard/home', leaderboardController.getLeaderboardHome);
+    this.app.get('/leaderboard/away', leaderboardController.getLeaderboardAway);
   }
 
   private config():void {
