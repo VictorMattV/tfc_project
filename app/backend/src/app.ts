@@ -1,18 +1,8 @@
 import * as express from 'express';
-import LeaderboardController from './controllers/leaderboardController';
-import MatchController from './controllers/matchController';
-import TeamController from './controllers/teamController';
-import UserController from './controllers/userController';
-import MatchValidation from './middlewares/matchValidate';
-import LoginValidation from './middlewares/userValidate';
-
-const userController = new UserController();
-const teamController = new TeamController();
-const matchController = new MatchController();
-const leaderboardController = new LeaderboardController();
-
-const loginValidation = new LoginValidation();
-const matchValidation = new MatchValidation();
+import leaderboardRoute from './routes/leaderboardRoute';
+import loginRoute from './routes/loginRoute';
+import matchRoute from './routes/matchRoute';
+import teamRoute from './routes/teamRoute';
 
 class App {
   public app: express.Express;
@@ -23,23 +13,19 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
 
-    this.app.post('/login', loginValidation.loginValid, userController.login);
-    this.app.get('/login/validate', userController.getRole);
-    this.app.get('/teams', teamController.getAll);
-    this.app.get('/teams/:id', teamController.getById);
-    this.app.get('/matches', matchController.getAll);
-    this.app.post(
-      '/matches',
-      matchValidation.matchValid,
-      matchValidation.userToken,
-      matchController.createMatch,
-    );
-    this.app.patch('/matches/:id/finish', matchController.finishMatch);
-    this.app.patch('/matches/:id', matchController.editMatch);
-    this.app.get('/leaderboard/home', leaderboardController.getLeaderboardHome);
-    this.app.get('/leaderboard/away', leaderboardController.getLeaderboardAway);
+    this.app.post('/login', loginRoute);
+    this.app.get('/login/validate', loginRoute);
+    this.app.get('/teams', teamRoute);
+    this.app.get('/teams/:id', teamRoute);
+    this.app.get('/matches', matchRoute);
+    this.app.post('/matches', matchRoute);
+    this.app.patch('/matches/:id/finish', matchRoute);
+    this.app.patch('/matches/:id', matchRoute);
+    this.app.get('/leaderboard/home', leaderboardRoute);
+    this.app.get('/leaderboard/away', leaderboardRoute);
+    this.app.get('/leaderboard', leaderboardRoute);
   }
 
   private config():void {

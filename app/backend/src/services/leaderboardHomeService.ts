@@ -24,6 +24,7 @@ export default class LeaderboardHomeService {
         [sequelize.literal('points'), 'DESC'], [sequelize.literal('wins'), 'DESC'],
         [sequelize.literal('balanceGoals'), 'DESC'], [sequelize.literal('goals'), 'DESC'],
         [sequelize.literal('goalsOwn'), 'ASC']] });
+
     return leaderboardAttributes;
   }
 
